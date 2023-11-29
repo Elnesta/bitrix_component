@@ -1,30 +1,24 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Мебельная компания");
-?><p>
-Наша компания существует на Российском рынке с 1992 года. За это время «Мебельная компания» прошла большой путь от маленькой торговой фирмы до одного из крупнейших производителей корпусной мебели в России.
-</p><p>
-«Мебельная компания» осуществляет производство мебели на высококлассном оборудовании с применением минимальной доли ручного труда, что позволяет обеспечить высокое качество нашей продукции. Налажен производственный процесс как массового и индивидуального характера, что с одной стороны позволяет обеспечить постоянную номенклатуру изделий и индивидуальный подход – с другой.
-<h3>Наша продукция</h3>
-<?$APPLICATION->IncludeComponent("bitrix:furniture.catalog.index", "", array(
-	"IBLOCK_TYPE" => "products",
-	"IBLOCK_ID" => "2",
-	"IBLOCK_BINDING" => "section",
-	"CACHE_TYPE" => "A",
-	"CACHE_TIME" => "36000000",
-	"CACHE_GROUPS" => "N"
-	),
-	false
+?><?$APPLICATION->IncludeComponent(
+	"system:elements.list",
+	"",
+	Array(
+		"CACHE_TIME" => "3600",
+		"CACHE_TYPE" => "A",
+		"COUNT" => "0",
+		"IBLOCK_CODE" => "",
+		"IBLOCK_ID" => "5",
+		"IBLOCK_TYPE" => "test",
+		"SHOW_NAV" => "Y",
+		"SORT_DIRECTION1" => "ASC",
+		"SORT_DIRECTION2" => "ASC",
+		"SORT_FIELD1" => "ACTIVE_FROM",
+		"SORT_FIELD2" => "ID"
+	)
 );?>
-<h3>Наши услуги</h3>
-<?$APPLICATION->IncludeComponent("bitrix:furniture.catalog.index", "", array(
-	"IBLOCK_TYPE" => "products",
-	"IBLOCK_ID" => "3",
-	"IBLOCK_BINDING" => "element",
-	"CACHE_TYPE" => "A",
-	"CACHE_TIME" => "36000000",
-	"CACHE_GROUPS" => "N"
-	),
-	false
-);?>
+<p>
+</p>
+<p>
 </p><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
