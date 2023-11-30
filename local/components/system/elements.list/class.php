@@ -202,7 +202,10 @@ class StandardElementListComponent extends CBitrixComponent
         $this->arResult['IBLOCK_ID'] = $this->arParams['IBLOCK_ID'];
         $this->cacheKeys[] = 'IBLOCK_ID';
     }
+		protected function getSort() {
 
+
+		}
 	/**
 	 * получение результатов
 	 */
@@ -211,7 +214,8 @@ class StandardElementListComponent extends CBitrixComponent
 		$filter = array(
 			'IBLOCK_TYPE' => $this->arParams['IBLOCK_TYPE'],
 			'IBLOCK_ID' => $this->arParams['IBLOCK_ID'],
-			'ACTIVE' => 'Y'
+			'ACTIVE' => 'Y',
+			"PROPERTY_".$_GET["filter"]."_VALUE"=>"Да",
 		);
 		$sort = array(
 			$this->arParams['SORT_FIELD1'] => $this->arParams['SORT_DIRECTION1'],
@@ -229,13 +233,16 @@ class StandardElementListComponent extends CBitrixComponent
 		$iterator = \CIBlockElement::GetList($sort, $filter, false, $this->navParams, $select);
 		while ($element = $iterator->GetNext())
 		{
+			$elementIMG = CFile::GetPath(
+				$element['PREVIEW_PICTURE']
+			);
 			$this->arResult['ITEMS'][] = array(
 				'ID' => $element['ID'],
 				'NAME' => $element['NAME'],
 				'DATE' => $element['DATE_ACTIVE_FROM'],
 				'URL' => $element['DETAIL_PAGE_URL'],
 				'TEXT' => $element['PREVIEW_TEXT'],
-				'IMG' => $element['PREVIEW_PICTURE']
+				'PREVIEW_PICTURE' => $elementIMG
 			);
 		}
 		if ($this->arParams['SHOW_NAV'] == 'Y' && $this->arParams['COUNT'] > 0)

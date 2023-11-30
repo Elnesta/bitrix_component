@@ -33,7 +33,8 @@ try
 		'ID' => Loc::getMessage('ELEMENTS_LIST_PARAMETERS_SORT_ID'),
 		'NAME' => Loc::getMessage('ELEMENTS_LIST_PARAMETERS_SORT_NAME'),
 		'ACTIVE_FROM' => Loc::getMessage('ELEMENTS_LIST_PARAMETERS_SORT_ACTIVE_FROM'),
-		'SORT' => Loc::getMessage('ELEMENTS_LIST_PARAMETERS_SORT_SORT')
+		'SORT' => Loc::getMessage('ELEMENTS_LIST_PARAMETERS_SORT_SORT'),
+		$_GET["sort"] => "Пользовательская сортировка"
 	);
 	
 	$sortDirection = array(
