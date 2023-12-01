@@ -188,7 +188,8 @@ class StandardElementListComponent extends CBitrixComponent
             );
             $filter = array(
                 'TYPE' => $this->arParams['IBLOCK_TYPE'],
-                'CODE' => $this->arParams['IBLOCK_CODE']
+                'CODE' => $this->arParams['IBLOCK_CODE'],
+								"PROPERTY_".$_GET["filter"]."_VALUE"=>"Да",
             );
             $iterator = \CIBlock::GetList($sort, $filter);
             if ($iblock = $iterator->GetNext())
@@ -217,8 +218,13 @@ class StandardElementListComponent extends CBitrixComponent
 			'ACTIVE' => 'Y',
 			"PROPERTY_".$_GET["filter"]."_VALUE"=>"Да",
 		);
+		if ($_GET["sort"]) {
+			$sortVar = $_GET["sort"];
+		} else {
+			$sortVar = $this->arParams['SORT_FIELD1'];
+		};
 		$sort = array(
-			$this->arParams['SORT_FIELD1'] => $this->arParams['SORT_DIRECTION1'],
+			$sortVar => $this->arParams['SORT_DIRECTION1'],
 			$this->arParams['SORT_FIELD2'] => $this->arParams['SORT_DIRECTION2']
 		);
 		$select = array(
@@ -247,7 +253,7 @@ class StandardElementListComponent extends CBitrixComponent
 		}
 		if ($this->arParams['SHOW_NAV'] == 'Y' && $this->arParams['COUNT'] > 0)
 		{
-			$this->arResult['NAV_STRING'] = $iterator->GetPageNavString('');
+			$this->arResult['NAV_STRING'] = $iterator->GetPageNavString('','grid');
 		}
 	}
 	

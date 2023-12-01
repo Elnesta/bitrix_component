@@ -31,32 +31,23 @@ $this->setFrameMode(true);
 			}
 ?>
 
-<?php
-printf('<span>Сортировать по: </span>
-<a href="%s" >индексу</a> |
-<a href="%s" >заголовку</a> |
-<a href="%s" >без сортировки</a>',
-$APPLICATION->GetCurPageParam("sort=ID",array("sort"), false),
-$APPLICATION->GetCurPageParam("sort=NAME",array("sort"), false),
-$APPLICATION->GetCurPageParam("sort=ACTIVE_FROM",array("sort"), false)
-);
- 
-?>
 
-<?php
-printf('<span>Фильтр: </span>
-<a href="%s" >важное</a> |
-<a href="%s" >новое</a> |
-<a href="%s" >все</a>',
-$APPLICATION->GetCurPageParam("filter=IMPORT",array("filter"), false),
-$APPLICATION->GetCurPageParam("filter=NEW",array("filter"), false),
-$APPLICATION->GetCurPageParam("filter=ALL",array("filter"), false)
-);
- 
-?>
+<div class="interactive-wrap">
+	<div class="sort-wrap"><span>Сортировать по: </span>
+		<a class="<? echo ($_GET["sort"] == "ID") ? "active" : '' ?>" href="<? echo $APPLICATION->GetCurPageParam("sort=ID",array("sort"), false)?>" >индексу</a> |
+		<a class="<? echo ($_GET["sort"] == "NAME") ? "active" : '' ?>" href="<? echo $APPLICATION->GetCurPageParam("sort=NAME",array("sort"), false)?>" >заголовку</a> |
+		<a class="<? echo ($_GET["sort"] == "ACTIVE_FROM") ? "active" : '' ?>" href="<? echo $APPLICATION->GetCurPageParam("sort=ACTIVE_FROM",array("sort"), false)?>" >без сортировки</a>
+	</div>
+	<div class="filter-wrap"><span>Фильтр: </span>
+		<a class="<? echo ($_GET["filter"] == "IMPORT") ? "active" : '' ?>" href="<? echo $APPLICATION->GetCurPageParam("filter=IMPORT",array("filter"), false) ?>" >важное</a> |
+		<a class="<? echo ($_GET["filter"] == "NEW") ? "active" : '' ?>" href="<? echo $APPLICATION->GetCurPageParam("filter=NEW",array("filter"), false)?>" >новое</a> |
+		<a class="<? echo ($_GET["filter"] == "ALL") ? "active" : '' ?>" href="<? echo $APPLICATION->GetCurPageParam("filter=ALL",array("filter"), false)?>" >все</a>
+	</div>
+</div>
+
 
 <? if (count($arResult['ITEMS'])):?>
-<h2><?var_dump($_GET["filter"]) ?><?=Loc::getMessage('ELEMENTS_LIST_TEMPLATE_TITLE');?></h2>
+<h2><?=Loc::getMessage('ELEMENTS_LIST_TEMPLATE_TITLE');?></h2>
 <div class="catalog-wrap">
 <? foreach ($arResult['ITEMS'] as $item):?>
 <div class='catalog-card'>
@@ -66,11 +57,13 @@ $APPLICATION->GetCurPageParam("filter=ALL",array("filter"), false)
       <img src="<? echo($item['PREVIEW_PICTURE']);?>" alt="">
     </div>
   </div>
+	</div>
+	<div class='catalog-bottom'>
   <a href="<?=$item['URL'];?>">
     <?=$item['NAME'];?>
   </a>
-</div>
-<div class='catalog-bottom'><?=$item['TEXT'];?></div>
+
+<?=$item['TEXT'];?></div>
 </div>
 <? endforeach;?>
 </div>

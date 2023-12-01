@@ -17,9 +17,9 @@ $APPLICATION->SetTitle("Каталог");
 		"SHOW_NAV" => "Y",
 		"SORT_DIRECTION1" => "ASC",
 		"SORT_DIRECTION2" => "ASC",
-		"SORT_FIELD1" => $_GET["sort"] ,
+		"SORT_FIELD1" => "SORT",
 		"SORT_FIELD2" => "ID",
-		"COMPONENT_TEMPLATE" => ".default",
+		"COMPONENT_TEMPLATE" => ".default" 
 	),
 	false
 );?>
